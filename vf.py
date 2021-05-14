@@ -1,10 +1,3 @@
-#-*- coding:utf-8 -*-
-# AUTHOR:   yaolili
-# FILE:     vf.py
-# ROLE:     vf2 algorithm
-# CREATED:  2015-11-28 20:55:11
-# MODIFIED: 2015-12-05 11:58:12
-
 import sys
 import os
 from graph import GraphSet
@@ -58,15 +51,22 @@ class Vf:
     
     #type = 0, __sub; type = 1, __origin
     def edgeLabel(self, offset, index1, index2, type):
+        '''
         if(int(index1) < int(index2)):
             key = str(index1) + ":" + str(index2)
         else:
-            key = str(index2) + ":" + str(index1)  
+            key = str(index2) + ":" + str(index1) 
+        '''
+        key = str(index1) + ":" + str(index2) 
         if type:
             ESet = self.__origin.curESet(offset)
         else:
-            ESet = self.__sub.curESet(offset)       
-        return ESet[key] 
+            ESet = self.__sub.curESet(offset)
+        if key in ESet:
+            return ESet[key]
+        else:
+            return ESet[str(index2) + ":" + str(index1)]
+         
     
     def isMatchInV2Succ(self, j, vertex, edge, v2, v2Succ):
         for succ in v2Succ:
@@ -181,7 +181,6 @@ class Vf:
         '''
                 
         if curMap.isCovered(self.__sub.curVSet(i)):
-            print "yes!"
             return result
         
  
@@ -229,6 +228,7 @@ class Vf:
         return result
         
     def main(self, f1, f2):   
+        # output = sys.stdout
         '''
         output = sys.stdout
         outputfile=open(f3,'w+')
@@ -237,28 +237,25 @@ class Vf:
         self.__origin = GraphSet(f1)
         self.__sub = GraphSet(f2)
         
-        '''
-        #test usage!
-        print "in main() subVSet: ", self.__sub.curVSet(0)
-        print "in main() graphVSet: ", self.__origin.curVSet(0)       
-        print "in main() subVESet: ", self.__sub.curVESet(0)
-        print "in main() gVESet: ", self.__origin.curVESet(0)
-        '''
+        
+        # #test usage!
+        # print "in main() subVSet: ", self.__sub.curVSet(0)
+        # print "in main() graphVSet: ", self.__origin.curVSet(0)       
+        # print "in main() subVESet: ", self.__sub.curVESet(0)
+        # print "in main() gVESet: ", self.__origin.curVESet(0)
+        
         
         subLen = len(self.__sub.graphSet())
         gLen = len(self.__origin.graphSet())
         
         for i in range(subLen):          
             for j in range(gLen):
-                result = {}        
+                result = {}
                 result = self.dfsMatch(i, j, result)                              
                 if len(result) == len(self.__sub.curVSet(i)):
-                    print "Match! %s %d-th graph isomorphism %s %d-th graph!" %(f2, i, f1, j)    
-                    print result  
-                    print "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"                    
+                    print result                    
                 else:
-                    print "Mismatch! %s %d-th graph isomerism %s %d-th graph!" %(f2, i, f1, j)
-                    print "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" 
+                    print 0
                     
                 
 
@@ -266,3 +263,7 @@ class Vf:
     
     
    
+# in main() subVESet:  [['0:8', '0:5', '0:6', '0:1'], ['1:3', '1:4', '1:2', '0:1', '1:5', '1:7'], ['1:2'], ['1:3', '3:5'], ['1:4'], ['0:5', '1:5', '5:8', '5:6', '3:5'], ['0:6', '5:6'], ['7:8', '1:7'], ['0:8', '7:8', '5:8']]
+# in main() subVESet:  [['0:8', '0:5', '0:6', '0:1'], ['1:3', '1:4', '1:2', '0:1', '1:5', '1:7'], ['1:2'], ['1:3', '3:5'], ['1:4'], ['0:5', '1:5', '5:8', '5:6', '3:5'], ['0:6', '5:6'], ['7:8', '1:7'], ['0:8', '7:8', '5:8']]
+
+

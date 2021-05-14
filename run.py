@@ -1,9 +1,4 @@
-#-*- coding:utf-8 -*-
-# AUTHOR:   yaolili
-# FILE:     run.py
-# ROLE:     run vf.py
-# CREATED:  2015-12-2 21:34:15
-
+#!/usr/bin/env python
 import os
 import sys
 import time
@@ -17,12 +12,12 @@ if __name__ == '__main__':
         exit()
     
     start = time.clock()    
-    output = open(sys.argv[3], 'w+')
-    sys.stdout = output
+    # output = open(sys.argv[3], 'w+')
+    # sys.stdout = output
     
     vf2 = Vf()   
     vf2.main(sys.argv[1], sys.argv[2])   
     
     end = time.clock()
-    print "time: ", (end - start)/60
-    output.close()
+    # print "time: ", (end - start)/60
+    # output.close()

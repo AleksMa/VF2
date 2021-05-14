@@ -1,10 +1,12 @@
-#VF2
-Implement a (Sub)Graph Isomorphism Algorithm for Matching Large Graphs
+# VF2
+Алгоритм проверки подграфов на изоморфизм VF2, реализованный на python2.7
 
-#Usage
-python run.py queryGraphFile graphFile  outputFile
+## Использование
+```
+python run.py graph subGraph
+```
 
-eg: python run.py data/mygraphdb.data data/Q12.my result.txt
-
-#Reference
-A (Sub)Graph Isomorphism Algorithm for Matching Large Graphs
+Пример
+```
+python run.py data/mygraphdb.data data/Q12.my
+```

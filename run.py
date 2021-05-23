@@ -5,10 +5,9 @@ import time
 from vf import Vf
 
 if __name__ == '__main__':
-    if len(sys.argv) < 4:
+    if len(sys.argv) < 3:
         print("sys.argv[1]: Graph file")
         print("sys.argv[2]: subGraph file")
-        print("sys.argv[3]: output file")
         exit()
     
     start = time.time()    
@@ -16,7 +15,7 @@ if __name__ == '__main__':
     # sys.stdout = output
     
     vf2 = Vf()   
-    res = vf2.main(sys.argv[1], sys.argv[2])   
+    res = vf2.run(sys.argv[1], sys.argv[2])   
     print(res)  
 
     end = time.time()

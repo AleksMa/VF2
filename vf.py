@@ -1,7 +1,36 @@
 import sys
 import os
+import networkx as nx
 from graph import GraphSet
 from map import Map
+
+def CreateGraph(filename):
+    G = nx.Graph()
+    try:
+        with open(filename, "r") as fin:
+            lineNum = -1
+            for line in fin:
+                lineList = line.strip().split(" ")
+                if not lineList:
+                    print("Class GraphSet __init__() line split error!")
+                    exit()
+                if lineList[0] == 'v':
+                    if len(lineList) != 3:
+                        print("Class GraphSet __init__() line vertex error!")
+                        exit()
+                    G.add_node(int(lineList[1]), attr = lineList[2])
+                elif lineList[0] == 'e':
+                    if len(lineList) != 4:
+                        print("Class GraphSet __init__() line edge error!")
+                        exit()
+                    G.add_edge(int(lineList[1]),int(lineList[2]),weight=int(lineList[3]))
+                else:
+                    #empty line!
+                    continue           
+    except(IOError):
+        print("Class GraphSet __init__() Cannot open Graph file", filename)
+        exit()
+    return G
 
 class Vf:
 
@@ -227,15 +256,23 @@ class Vf:
                 result.pop(int(v1))                
         return result
         
-    def main(self, f1, f2):   
+
+    def run(self, f1, f2):
+        g1 = CreateGraph(f1)
+        g2 = CreateGraph(f2)
+
+        return self.main(g1, g2)
+
+    def main(self, g1, g2):   
         # output = sys.stdout
         '''
         output = sys.stdout
         outputfile=open(f3,'w+')
         sys.stdout=outputfile
         '''
-        self.__origin = GraphSet(f1)
-        self.__sub = GraphSet(f2)
+
+        self.__origin = GraphSet(g1)
+        self.__sub = GraphSet(g2)
         
         
         # #test usage!

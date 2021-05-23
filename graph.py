@@ -9,15 +9,20 @@ class GraphSet:
         curVertexSet = {}
         curEdgeSet = {}
 
+        nodeDict = {}
+        nodeNext = 0
+
         for node in G.nodes():
-            print(node)
-            curVertexSet[node] = G.nodes[node]['attr']
+            # print(node)
+            nodeDict[node] = nodeNext
+            curVertexSet[nodeNext] = G.nodes[node]['attr']
+            nodeNext = nodeNext + 1
 
         for edge in G.edges():
-            edgeKey = str(edge[0]) + ":" + str(edge[1])
+            edgeKey = str(nodeDict[edge[0]]) + ":" + str(nodeDict[edge[1]])
             curEdgeSet[edgeKey] = G[edge[0]][edge[1]]['weight']
-            print(edgeKey)
-            print(G[edge[0]][edge[1]]['weight'])
+            # print(edgeKey)
+            # print(G[edge[0]][edge[1]]['weight'])
 
         currentGraph = (0, curVertexSet, curEdgeSet)
 

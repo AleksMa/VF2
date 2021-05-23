@@ -10,15 +10,15 @@ class Vf:
      
     def candidate(self, subMNeighbor, gMNeighbor):
         if not (subMNeighbor and gMNeighbor):
-            print "Class Vf candidate() arguments value error! subMNeighbor or gMNeighbor is empty!"
+            print("Class Vf candidate() arguments value error! subMNeighbor or gMNeighbor is empty!")
             exit()
         if not (isinstance(subMNeighbor, list) and isinstance(gMNeighbor, list)):
-            print "Class Vf candidate() arguments type error! type list expected!"
+            print("Class Vf candidate() arguments type error! type list expected!")
             exit()
         if not all(isinstance(x, int) for x in subMNeighbor):
-            print "Class Vf candidate() arguments type error! int in subMNeighbor list expected!"
+            print("Class Vf candidate() arguments type error! int in subMNeighbor list expected!")
         if not all(isinstance(x, int) for x in gMNeighbor):
-            print "Class Vf candidate() arguments type error! int in gMNeighbor list expected!"        
+            print("Class Vf candidate() arguments type error! int in gMNeighbor list expected!")        
         
         pairs = []
         for i in range(len(subMNeighbor)):
@@ -31,10 +31,10 @@ class Vf:
     def preSucc(self, vertexNeighbor, map, type):
         #vertexNeighbor and map can be empty
         if not (isinstance(vertexNeighbor, list) and isinstance(map, list)):
-            print "Class Vf preSucc() arguments type error! vertexNeighbor and map expected list!"
+            print("Class Vf preSucc() arguments type error! vertexNeighbor and map expected list!")
             exit()
         if not (type == 0 or type == 1):
-            print "Class Vf preSucc() arguments value error! type expected 0 or 1!"
+            print("Class Vf preSucc() arguments value error! type expected 0 or 1!")
            
         result = []
         #succ
@@ -168,7 +168,7 @@ class Vf:
     def dfsMatch(self, i, j, result):   
         #print "in dfsMatch() result: ", result
         if not isinstance(result, dict):
-            print "Class Vf dfsMatch() arguments type error! result expected dict!"
+            print("Class Vf dfsMatch() arguments type error! result expected dict!")
         
         curMap = Map(result)
         
@@ -188,7 +188,7 @@ class Vf:
         gMNeighbor = curMap.neighbor(j, self.__origin, 1, True)   
        
         if not (subMNeighbor and gMNeighbor):
-            print "Class Vf dfsMatch(), subMNeighbor or gMNeighbor is empty!"
+            print("Class Vf dfsMatch(), subMNeighbor or gMNeighbor is empty!")
             exit()
         
         subNMNeighbor = curMap.neighbor(i, self.__sub, 0, False)
@@ -253,9 +253,9 @@ class Vf:
                 result = {}
                 result = self.dfsMatch(i, j, result)                              
                 if len(result) == len(self.__sub.curVSet(i)):
-                    print result                    
+                    return result                    
                 else:
-                    print 0
+                    return {}
                     
                 
 

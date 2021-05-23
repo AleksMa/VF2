@@ -19,7 +19,7 @@ class GraphSet:
                 for line in fin:
                     lineList = line.strip().split(" ")
                     if not lineList:
-                        print "Class GraphSet __init__() line split error!"
+                        print("Class GraphSet __init__() line split error!")
                         exit()
                     #a new graph!
                     if lineList[0] == 't':
@@ -37,20 +37,20 @@ class GraphSet:
                         curEdgeSet = {}
                     elif lineList[0] == 'v':
                         if len(lineList) != 3:
-                            print "Class GraphSet __init__() line vertex error!"
+                            print("Class GraphSet __init__() line vertex error!")
                             exit()
                         curVertexSet[int(lineList[1])] = lineList[2]
                     elif lineList[0] == 'e':
                         if len(lineList) != 4:
-                            print "Class GraphSet __init__() line edge error!"
+                            print("Class GraphSet __init__() line edge error!")
                             exit()
                         edgeKey = str(lineList[1]) + ":" + str(lineList[2])
                         curEdgeSet[edgeKey] = lineList[3]
                     else:
                         #empty line!
                         continue           
-        except IOError, e:
-            print "Class GraphSet __init__() Cannot open Graph file: ", e
+        except IOError as e:
+            print("Class GraphSet __init__() Cannot open Graph file: ", e)
             exit()
             
     
@@ -59,7 +59,7 @@ class GraphSet:
     
     def curVSet(self, offset):
         if offset >= len(self.__vertexSet):
-            print "Class GraphSet curVSet() offset out of index!"
+            print("Class GraphSet curVSet() offset out of index!")
             exit()
         
         return self.__vertexSet[offset]
@@ -67,7 +67,7 @@ class GraphSet:
         
     def curESet(self, offset):
         if offset >= len(self.__edgeSet):
-            print "Class GraphSet curESet() offset out of index!"
+            print("Class GraphSet curESet() offset out of index!")
             exit()
         
         return self.__edgeSet[offset]
@@ -76,7 +76,7 @@ class GraphSet:
     def curVESet(self, offset):
     
         if offset >= len(self.__vertexSet):
-                print "Class GraphSet curVESet() offset out of index!"
+                print("Class GraphSet curVESet() offset out of index!")
                 exit()
 
         vertexNum = len(self.__vertexSet[offset])
@@ -93,7 +93,7 @@ class GraphSet:
 
     def neighbor(self, offset, vertexIndex):
         if offset >= len(self.__vertexSet):
-            print "Class GraphSet neighbor() offset out of index!"
+            print("Class GraphSet neighbor() offset out of index!")
             exit()
         
         VESet = self.curVESet(offset)

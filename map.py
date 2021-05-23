@@ -14,7 +14,7 @@ class Map:
         self.__subMap = []
         self.__gMap = []    
         if type(result) is not dict:
-            print "Class Map __init__() argument type error! dict expected!"
+            print("Class Map __init__() argument type error! dict expected!")
             exit()
         if result:             
             for key in result:     
@@ -38,14 +38,14 @@ class Map:
     #type = 0, subGraph; type = 1, graph
     def neighbor(self, offset, graph, type, isInMap):
         if not isinstance(graph, GraphSet):
-            print "Class Map neighbor() argument type error!"
+            print("Class Map neighbor() argument type error!")
             exit()
         if not (type == 1 or type == 0):
-            print "Class Map neighbor() argument value error! type expected 0 or 1!"
+            print("Class Map neighbor() argument value error! type expected 0 or 1!")
             exit()
         if not (isInMap == True or isInMap == False):
-			print "Class Map neighbor() argument value error! isInMap expected True or False!"
-			exit()
+            print("Class Map neighbor() argument value error! isInMap expected True or False!")
+            exit()
             
         VESet = graph.curVESet(offset)  
         
@@ -63,17 +63,17 @@ class Map:
             for i in range(len(aList)):
                 v1, v2 = aList[i].strip().split(":")
                 if int(v1) != index:
-					v = int(v1)													
+                    v = int(v1)                                                    
                 elif int(v2) != index:
-					v = int(v2)
+                    v = int(v2)
                 else:
-                    print "Class Map subNeighbor() VESet error!"
+                    print("Class Map subNeighbor() VESet error!")
                     exit()
                 
                 if isInMap and (v not in neighbor):
-				    neighbor.append(v)
+                    neighbor.append(v)
                 elif v not in chain(neighbor, curMap):
-					neighbor.append(v)			
+                    neighbor.append(v)            
                 else:
                     continue
 

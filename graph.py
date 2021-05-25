@@ -2,7 +2,7 @@ import networkx as nx
 
 class GraphSet:
 
-    def __init__(self, G):   
+    def __init__(self, G):
         self.__graphSet = []
         self.__vertexSet = []
         self.__edgeSet = []
@@ -29,9 +29,9 @@ class GraphSet:
         self.__graphSet.append(currentGraph)
         self.__vertexSet.append(curVertexSet)
         self.__edgeSet.append(curEdgeSet)
-    
-    
-    # def __init__(self, inputFile):   
+
+
+    # def __init__(self, inputFile):
     #     self.__graphSet = []
     #     self.__vertexSet = []
     #     self.__edgeSet = []
@@ -72,40 +72,40 @@ class GraphSet:
     #                     curEdgeSet[edgeKey] = lineList[3]
     #                 else:
     #                     #empty line!
-    #                     continue           
+    #                     continue
     #     except IOError as e:
     #         print("Class GraphSet __init__() Cannot open Graph file: ", e)
     #         exit()
-            
-    
-    def graphSet(self):        
+
+
+    def graphSet(self):
         return self.__graphSet
-    
+
     def curVSet(self, offset):
         if offset >= len(self.__vertexSet):
             print("Class GraphSet curVSet() offset out of index!")
             exit()
-        
+
         return self.__vertexSet[offset]
-        
-        
+
+
     def curESet(self, offset):
         if offset >= len(self.__edgeSet):
             print("Class GraphSet curESet() offset out of index!")
             exit()
-        
+
         return self.__edgeSet[offset]
-    
-      
+
+
     def curVESet(self, offset):
-    
+
         if offset >= len(self.__vertexSet):
                 print("Class GraphSet curVESet() offset out of index!")
                 exit()
 
         vertexNum = len(self.__vertexSet[offset])
         result = [[] for i in range(vertexNum)]
-            
+
         for key in self.__edgeSet[offset]:
             v1, v2 = key.strip().split(":")
             #print int(v1)
@@ -113,22 +113,24 @@ class GraphSet:
             result[int(v1)].append(key)
             result[int(v2)].append(key)
         return result
-    
+
 
     def neighbor(self, offset, vertexIndex):
         if offset >= len(self.__vertexSet):
             print("Class GraphSet neighbor() offset out of index!")
             exit()
-        
+
         VESet = self.curVESet(offset)
         aList = VESet[vertexIndex]
         neighborSet = []
         for i in range(len(aList)):
-            v1, v2 = aList[i].strip().split(":")            
+            v1, v2 = aList[i].strip().split(":")
             if int(v1) != vertexIndex:
                 neighborSet.append(int(v1))
             elif int(v2) != vertexIndex:
                 neighborSet.append(int(v2))
             else:
-                exit()
+                # print("Some exit")
+                # exit()
+                return neighborSet
         return neighborSet

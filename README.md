@@ -1,12 +1,7 @@
 # VF2
-Алгоритм проверки подграфов на изоморфизм VF2, реализованный на python2.7
+Алгоритм проверки подграфов на изоморфизм VF2, реализованный на python3.
 
 ## Использование
 ```
-python run.py graph subGraph
-```
-
-Пример
-```
-python run.py data/mygraphdb.data data/Q12.my
+run.py graph subGraph
 ```
